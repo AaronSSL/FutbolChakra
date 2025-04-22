@@ -1,0 +1,333 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #750606;
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Game Area */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Game Grid */
+.game-grid {
+  display: grid;
+  /* El número de columnas se establecerá dinámicamente en JavaScript */
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.game-tile {
+  aspect-ratio: 1 / 1;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 5px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  color: #222;
+}
+
+.game-tile.filled {
+  background-color: black;
+  border-color: #d91023;
+  transform: scale(1.02);
+}
+
+/* Grid Contorno */
+.grid-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  border: 5px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grid-header {
+  background-color: #faefcc;
+  padding: 15px;
+  text-align: center;
+  border-bottom: 5px solid black;
+}
+
+.grid-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.grid-title span {
+  color: black;
+}
+
+/* Top row with clubs */
+.grid-top-row {
+  display: grid;
+  grid-template-columns: 150px repeat(3, 1fr);
+  border-bottom: 5px solid black;
+}
+
+/* Grid rows */
+.grid-row {
+  display: grid;
+  grid-template-columns: 150px repeat(3, 1fr);
+  border-bottom: 5px solid black;
+}
+
+.grid-row:last-child {
+  border-bottom: none;
+}
+
+/* Empty cell (top-left corner) */
+.empty-cell {
+  background-color: white;
+  border-right: 5px solid black;
+}
+
+/* Club cells */
+.club-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #91030f;
+  border-right: 5px solid black;
+  min-height: 120px;
+}
+
+.club-cell2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #91030f;
+  border-right: 0px solid black;
+  min-height: 120px;
+}
+
+.club-image {
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 5px;
+}
+
+.club-name {
+  font-size: 12px;
+  text-align: center;
+  color: #f5f2e7;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Grid cells */
+.grid-cell {
+  background-color: #f5f2e7;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 4px solid black;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.grid-cell:last-child {
+  border-right: none;
+}
+
+.grid-cell.correct {
+  background-color: #538d4e;
+}
+
+.grid-cell.filled {
+  background-color: #f5f2e7;
+}
+
+.grid-cell.filled::before {
+  content: attr(data-player);
+  position: absolute;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  padding: 5px;
+}
+
+.grid-cell.filled::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+
+/* Añadir estilos para las celdas resaltadas */
+.grid-cell.highlighted {
+  background-color: #a0a0a0 !important; /* Color gris para celdas con posibles respuestas */
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+  position: relative;
+}
+
+.grid-cell.highlighted::before {
+  content: "?";
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* Input container */
+.input-container {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+}
+
+#player-input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid black;
+  border-radius: 8px 0 0 8px;
+  background-color: #001529;
+  color: white;
+  outline: none;
+}
+
+#player-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#submit-btn {
+  width: 50px;
+  background-color: #00b7ff;
+  color: #001529;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+#submit-btn:hover {
+  background-color: #0095cc;
+}
+
+/* Message container */
+.message-container {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: transparent;
+  text-align: center;
+  min-height: 40px;
+  transition: all 0.3s ease;
+}
+
+.message-container.success {
+  background-color: #538d4e;
+}
+
+.message-container.error {
+  background-color: #d7141a;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+  .grid-container {
+    max-width: 100%;
+  }
+
+  .grid-top-row,
+  .grid-row {
+    grid-template-columns: 100px repeat(3, 1fr);
+  }
+
+  .club-cell {
+    min-height: 90px;
+    padding: 5px;
+  }
+
+  .club-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .club-name {
+    font-size: 10px;
+  }
+
+  .grid-cell.filled::before {
+    font-size: 12px;
+  }
+
+  .grid-cell.filled::after {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .follow-text {
+    display: none;
+  }
+
+  .grid-top-row,
+  .grid-row {
+    grid-template-columns: 80px repeat(3, 1fr);
+  }
+
+  .club-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .club-name {
+    font-size: 8px;
+  }
+}

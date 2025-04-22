@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script>
+    // Redirigir solo si NO hay acceso en localStorage NI en sessionStorage
+    if (
+        localStorage.getItem("accesoPermitido") !== "true" ||
+        sessionStorage.getItem("sesionActiva") !== "true"
+    ) {
+        window.location.replace("Inicio.html");
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FUTBOL11 - Juego de Palabras de Fútbol</title>
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="logo-container">
+    <div class="countdown-container">
+      <div class="countdown-title">CAMBIO DE JUEGO</div>
+      <div id="countdown-timer">00:00:00</div>
+    </div>
+    <div class="logo-wrapper">
+      <a href="Inicio.html" class="logo">FUTBOL<span class="logo-highlight">11</span></a>
+    </div>
+    <div class="header-right">
+      <div class="follow-text">
+        sígueme y escríbeme para mejorar la página <i class="fas fa-arrow-right"></i>
+      </div>
+      <a href="https://www.instagram.com/aaronssl27/" target="_blank" class="icon-button instagram-btn">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </header>
+  
+  <div class="tagline-container">
+    <div class="auth-buttons">
+      <button id="login-button" class="auth-nav-button">Iniciar Sesión</button>
+    </div>
+    <div class="tagline">Demuestra tu conocimiento de fútbol peruano</div>
+    <div class="auth-buttons">
+      <button id="register-button" class="auth-nav-button2">Registrarse</button>
+    </div>
+  </div>
+
+  <!-- Barra de usuario cuando está logueado -->
+  <div class="user-bar" id="user-bar">
+    <div class="user-bar-name">
+      <i class="fas fa-user-circle"></i>
+      <span id="user-bar-username">Usuario</span>
+    </div>
+    <div class="user-bar-points">
+      <span id="user-bar-points-value">0</span> puntos
+      <i class="fas fa-star"></i>
+    </div>
+  </div>
+
+  <!-- Modal de autenticación -->
+  <div id="auth-modal" class="auth-modal">
+    <div class="auth-modal-content">
+      <span class="close-modal">&times;</span>
+      
+      <!-- Formulario de inicio de sesión -->
+      <div id="login-form" class="auth-form">
+        <h3>Iniciar Sesión</h3>
+        <div class="form-group">
+          <label for="login-username">Usuario:</label>
+          <input type="text" id="login-username" placeholder="Nombre de usuario">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Contraseña:</label>
+          <input type="password" id="login-password" placeholder="Contraseña">
+        </div>
+        <button class="auth-button" onclick="loginUser(
+          document.getElementById('login-username').value,
+          document.getElementById('login-password').value
+        )">
+          <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </button>
+      </div>
+      
+      <!-- Formulario de registro -->
+      <div id="register-form" class="auth-form" style="display: none;">
+        <h3>Registrarse</h3>
+        <div class="form-group">
+          <label for="register-username">Usuario:</label>
+          <input type="text" id="register-username" placeholder="Elige un nombre de usuario">
+        </div>
+        <div class="form-group">
+          <label for="register-password">Contraseña:</label>
+          <input type="password" id="register-password" placeholder="Elige una contraseña">
+        </div>
+        <button class="auth-button" onclick="registerUser(
+          document.getElementById('register-username').value,
+          document.getElementById('register-password').value
+        )">
+          <i class="fas fa-user-plus"></i> Registrarse
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- La cuadrícula se generará dinámicamente en JavaScript -->
+    <div class="game-grid">
+      <!-- Los cuadrados se crearán según la longitud del apellido -->
+    </div>
+
+    <div class="keyboard">
+      <div class="keyboard-row">
+        <button class="key">q</button>
+        <button class="key">w</button>
+        <button class="key">e</button>
+        <button class="key">r</button>
+        <button class="key">t</button>
+        <button class="key">y</button>
+        <button class="key">u</button>
+        <button class="key">i</button>
+        <button class="key">o</button>
+        <button class="key">p</button>
+      </div>
+      <div class="keyboard-row">
+        <button class="key">a</button>
+        <button class="key">s</button>
+        <button class="key">d</button>
+        <button class="key">f</button>
+        <button class="key">g</button>
+        <button class="key">h</button>
+        <button class="key">j</button>
+        <button class="key">k</button>
+        <button class="key">l</button>
+      </div>
+      <div class="keyboard-row">
+        <button class="key wide">enter</button>
+        <button class="key">z</button>
+        <button class="key">x</button>
+        <button class="key">c</button>
+        <button class="key">v</button>
+        <button class="key">b</button>
+        <button class="key">n</button>
+        <button class="key">ñ</button>
+        <button class="key">m</button>
+        <button class="key wide">bksp</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="header.js"></script>
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

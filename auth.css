@@ -1,0 +1,295 @@
+/* Estilos para el sistema de autenticación */
+.tagline-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 20px;
+    background-color: #ffffff;
+    width: 100%;
+    border-bottom: 2px solid #b30c1d; /* Añadimos el borde rojo aquí */
+  }
+  
+  .tagline {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #b30c1d;
+    flex-grow: 1;
+    border-bottom: none;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .auth-nav-button {
+    background-color: rgb(54, 54, 194);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .auth-nav-button2 {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .auth-nav-button3 {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .auth-nav-button:hover {
+    background-color: #b30c1d;
+  }
+  
+  /* Barra de usuario cuando está logueado */
+  .user-bar {
+    display: none; /* Oculto por defecto, se muestra con JS cuando el usuario inicia sesión */
+    background-color: #ffffff;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .user-bar-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .user-bar-points {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: #d91023;
+  }
+  
+  .user-bar-points i {
+    color: gold;
+  }
+  
+  /* Modal de autenticación */
+  .auth-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .auth-modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+  }
+  
+  .close-modal:hover {
+    color: #333;
+  }
+  
+  .auth-form {
+    padding: 10px 0;
+  }
+  
+  .auth-form h3 {
+    color: #d91023;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .auth-button {
+    background-color: #d91023;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .auth-button:hover {
+    background-color: #b30c1d;
+  }
+  
+  .logout-button {
+    background-color: #3a3a3c;
+  }
+  
+  .logout-button:hover {
+    background-color: #2a2a2c;
+  }
+  
+  /* Estilos para la tabla de clasificación */
+  .leaderboard-sidebar {
+    width: 250px;
+    padding-right: 20px;
+  }
+  
+  .leaderboard {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    height: 100%;
+  }
+  
+  .leaderboard-title {
+    text-align: center;
+    color: #d91023;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 8px 5px;
+    text-align: left;
+  }
+  
+  .leaderboard-table th {
+    background-color: #d91023;
+    color: white;
+    font-size: 13px;
+  }
+  
+  .leaderboard-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .loading-text {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    font-size: 13px;
+  }
+  
+  /* Estilos para juegos ya jugados */
+  .game-played {
+    background-color: #3a3a3c !important;
+    cursor: not-allowed !important;
+  }
+  
+  /* Estilos para mensajes */
+  #message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+    }
+  
+    .leaderboard-sidebar {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 20px;
+    }
+  
+    .tagline-container {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .auth-buttons {
+      margin-top: 10px;
+    }
+  
+    .user-bar {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+  }
+  

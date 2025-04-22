@@ -1,0 +1,121 @@
+/* Estilos para la cabecera compartida */
+header.logo-container {
+    background-color: #b30c1d;
+    min-height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+  }
+  
+  /* Contenedor del logo centrado */
+  .logo-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  /* Logo */
+  .logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+  /* Parte resaltada del logo */
+  .logo-highlight {
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  }
+  
+  /* Contador de cambio de juego */
+  .countdown-container {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .countdown-title {
+    font-size: 14px;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  
+  #countdown-timer {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  
+  /* Texto + ícono a la derecha */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 14px;
+  }
+  
+  /* Icono de Instagram */
+  .icon-button {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  
+  /* Responsive Design para la cabecera */
+  @media (max-width: 768px) {
+    header.logo-container {
+      flex-direction: column;
+      padding: 10px;
+      gap: 10px;
+    }
+  
+    .logo-wrapper {
+      position: static;
+      transform: none;
+      order: 1;
+    }
+  
+    .countdown-container {
+      order: 0;
+      width: 100%;
+      max-width: 200px;
+    }
+  
+    .header-right {
+      order: 2;
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .logo {
+      font-size: 28px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo {
+      font-size: 28px;
+    }
+  
+    .header-right {
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .follow-text {
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+  

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FUTBOL11 - Juegos de Fútbol Peruano</title>
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="Inicio.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <script>
+    // Guardar en localStorage (persistente) y sessionStorage (por sesión)
+    localStorage.setItem("accesoPermitido", "true");
+    sessionStorage.setItem("sesionActiva", "true");
+  </script>
+  <header class="logo-container">
+    <div class="countdown-container">
+      <div class="countdown-title">CAMBIO DE JUEGO</div>
+      <div id="countdown-timer">00:00:00</div>
+    </div>
+    <div class="logo-wrapper">
+      <a href="Inicio.html" class="logo">
+        <img src="logo.png" alt="Logo Futbol11">
+      </a>
+    </div>    
+    <div class="header-right">
+      <div class="follow-text">
+        sígueme y escríbeme para mejorar la página <i class="fas fa-arrow-right"></i>
+      </div>
+      <a href="https://www.instagram.com/aaronssl27/" target="_blank" class="icon-button instagram-btn">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </header>
+
+  <div class="tagline-container">
+    <div class="auth-buttons">
+      <button id="login-button" class="auth-nav-button">Iniciar Sesión</button>
+    </div> 
+    <div class="tagline">Demuestra tu conocimiento de fútbol peruano</div>
+    <div class="auth-buttons">
+      <button id="register-button" class="auth-nav-button2">Registrarse</button>
+    </div>
+  </div>
+
+  <!-- Barra de usuario cuando está logueado -->
+  <div class="user-bar" id="user-bar">
+    <div class="user-bar-points">
+      <span id="user-bar-points-value">0</span> puntos
+      <i class="fas fa-star"></i>
+    </div>
+    <div class="user-bar-name">
+      <i class="fas fa-user-circle"></i>
+      <span id="user-bar-username">Usuario</span>
+    </div>
+    <div class="auth-buttons">
+      <button class="auth-button" onclick="logout()">
+          <i class="auth-nav-button3"></i>Cerrar Sesión
+        </button>
+    </div>
+  </div>
+
+  <!-- Contenedor de autenticación (oculto por defecto) -->
+  <div id="auth-modal" class="auth-modal">
+    <div class="auth-modal-content">
+      <span class="close-modal">&times;</span>
+      
+      <!-- Formulario de inicio de sesión -->
+      <div id="login-form" class="auth-form">
+        <h3>Iniciar Sesión</h3>
+        <div class="form-group">
+          <label for="login-username">Usuario:</label>
+          <input type="text" id="login-username" placeholder="Nombre de usuario">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Contraseña:</label>
+          <input type="password" id="login-password" placeholder="Contraseña">
+        </div>
+        <button class="auth-button" onclick="loginUser(
+          document.getElementById('login-username').value,
+          document.getElementById('login-password').value
+        )">
+          <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </button>
+      </div>
+      
+      <!-- Formulario de registro -->
+      <div id="register-form" class="auth-form" style="display: none;">
+        <h3>Registrarse</h3>
+        <div class="form-group">
+          <label for="register-username">Usuario:</label>
+          <input type="text" id="register-username" placeholder="Elige un nombre de usuario">
+        </div>
+        <div class="form-group">
+          <label for="register-password">Contraseña:</label>
+          <input type="password" id="register-password" placeholder="Elige una contraseña">
+        </div>
+        <button class="auth-button" onclick="registerUser(
+          document.getElementById('register-username').value,
+          document.getElementById('register-password').value
+        )">
+          <i class="fas fa-user-plus"></i> Registrarse
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="main-content">
+      <!-- Tabla de clasificación (ahora a la izquierda) -->
+      <div class="leaderboard-sidebar">
+        <div class="leaderboard">
+          <h2 class="leaderboard-title">Tabla de Clasificación</h2>
+          <div id="leaderboard-container" class="leaderboard-container">
+            <!-- La tabla se generará dinámicamente con JavaScript -->
+            <p class="loading-text">Cargando clasificación...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenido principal (juegos) -->
+      <div class="games-section">
+        <h2 class="games-title">Selecciona un juego</h2>
+        
+        <div class="games-grid">
+          <!-- Juego 1 - FUTBOL11 Original -->
+          <div class="game-card">
+            <div class="game-thumbnail">
+              <img src="imagen1.png">
+            </div>
+            <div class="game-info">
+              <h3>WORDLE</h3>
+              <p>Adivina apellidos de futbolistas peruanos</p>
+              <a href="index.html" class="play-button">JUGAR</a>
+            </div>
+          </div>
+          
+          <!-- Juego 2 - Próximamente -->
+          <div class="game-card">
+            <div class="game-thumbnail">
+              <img src="imagen2.png">
+            </div>
+            <div class="game-info">
+              <h3>GRID</h3>
+              <p>Encuentra al jugador que cumpla las 2 condiciones</p>
+              <a href="index2.html" class="play-button">JUGAR</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 FUTBOL11 - Todos los derechos reservados</p>
+  </footer>
+  
+  <script src="header.js"></script>
+  <script src="auth.js"></script>
+  <script src="Inicio.js"></script>
+</body>
+</html>
